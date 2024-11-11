@@ -261,8 +261,8 @@ extraEnvVarsSecret: ""
 ##
 multisite:
   enable: true
-  host: ""
-  networkType: emmynaturals.bametta.com
+  host: emmynaturals.bametta.com
+  networkType: subdomain
   enableNipIoRedirect: false
 ## @section WordPress deployment parameters
 ##
