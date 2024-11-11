@@ -26,16 +26,6 @@ eck-kibana:
     count: 1
     elasticsearchRef:
       name: elasticsearch
-  ingress:
-    annotations: {
-      cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    }
-    enabled: true
-    pathType: Prefix
-    hosts:
-    - host: "kibana.bametta.com"
-      path: "/"
-    tls: true
 
 eck-beats:
   enabled: true
