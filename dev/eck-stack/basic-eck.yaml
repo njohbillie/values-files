@@ -1,5 +1,15 @@
 ---
-storageClassName: "gp2"
+global:
+  imageRegistry: ""
+  ## E.g.
+  ## imagePullSecrets:
+  ##   - myRegistryKeySecretName
+  ##
+  imagePullSecrets: []
+  defaultStorageClass: gp2
+  storageClass: ""
+  ## Compatibility adaptations for Kubernetes platforms
+
 eck-elasticsearch:
   nodeSets:
   - name: default
