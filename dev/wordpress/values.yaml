@@ -644,7 +644,7 @@ ingress:
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations: {
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   }
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
@@ -653,7 +653,7 @@ ingress:
   ##   - Rely on cert-manager to create it by setting the corresponding annotations
   ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
   ##
-  tls: false
+  tls: true
   ## @param ingress.tlsWwwPrefix Adds www subdomain to default cert
   ## Creates tls host with ingress.hostname: {{ print "www.%s" .Values.ingress.hostname }}
   ## Is enabled if "nginx.ingress.kubernetes.io/from-to-www-redirect" is "true"
