@@ -160,7 +160,7 @@ eck-logstash:
 
   volumeClaimTemplate:
     accessModes: ["ReadWriteOnce"]
-  #  storageClassName: "gp2"
+    storageClassName: "gp2"
     resources:
     requests:
       storage: 1Gi
