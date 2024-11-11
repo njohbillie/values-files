@@ -130,7 +130,7 @@ wordpressFirstName: Billie
 wordpressLastName: Njoh
 ## @param wordpressBlogName Blog name
 ##
-wordpressBlogName: First class Blog!
+wordpressBlogName: My Blog!
 ## @param wordpressTablePrefix Prefix to use for WordPress database tables
 ##
 wordpressTablePrefix: wp_
