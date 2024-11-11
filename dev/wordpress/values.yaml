@@ -9,17 +9,18 @@
 
 ## @param global.imageRegistry Global Docker image registry
 ## @param global.imagePullSecrets Global Docker registry secret names as an array
-## @param global.storageClass Global StorageClass for Persistent Volume(s)
+## @param global.defaultStorageClass Global default StorageClass for Persistent Volume(s)
+## @param global.storageClass DEPRECATED: use global.defaultStorageClass instead
 ##
 global:
-  namespace: wordpress
   imageRegistry: ""
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: gp2
+  defaultStorageClass: gp2
+  storageClass: ""
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -29,7 +30,6 @@ global:
       ## @param global.compatibility.openshift.adaptSecurityContext Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is Openshift), force (perform the adaptation always), disabled (do not perform adaptation)
       ##
       adaptSecurityContext: auto
-createNamespace: true  # Add this line to create the namespace
 ## @section Common parameters
 ##
 
@@ -84,10 +84,9 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/wordpress
-  tag: 6.5.5-debian-12-r8
+  tag: 6.6.2-debian-12-r18
   digest: ""
   ## Specify a imagePullPolicy
-  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
   ##
   pullPolicy: IfNotPresent
@@ -109,7 +108,7 @@ image:
 
 ## @param wordpressUsername WordPress username
 ##
-wordpressUsername: bametta
+wordpressUsername: user
 ## @param wordpressPassword WordPress user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
@@ -136,7 +135,7 @@ wordpressBlogName: Bametta Blog!
 wordpressTablePrefix: wp_
 ## @param wordpressScheme Scheme to use to generate WordPress URLs
 ##
-wordpressScheme: https
+wordpressScheme: http
 ## @param wordpressSkipInstall Skip wizard installation
 ## NOTE: useful if you use an external database that already contains WordPress data
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/wordpress#connect-wordpress-docker-container-to-an-existing-database
@@ -148,12 +147,7 @@ wordpressSkipInstall: false
 ##   @ini_set( 'post_max_size', '128M');
 ##   @ini_set( 'memory_limit', '256M' );
 ##
-wordpressExtraConfigContent: |
-  @ini_set( 'post_max_size', '128M');
-  @ini_set( 'memory_limit', '512M' );
-  set_time_limit(300);
-  @ini_set( 'max_input_vars' , 2000 );
-  @ini_set( 'set_max_upload_size', 100 );
+wordpressExtraConfigContent: ""
 ## @param wordpressConfiguration The content for your custom wp-config.php file (advanced feature)
 ## NOTE: This will override configuring WordPress based on environment variables (including those set by the chart)
 ## NOTE: Currently only supported when `wordpressSkipInstall=true`
@@ -203,12 +197,16 @@ customPostInitScripts: {}
 ## @param smtpUser SMTP username
 ## @param smtpPassword SMTP user password
 ## @param smtpProtocol SMTP protocol
+## @param smtpFromEmail SMTP from email (default is `smtpUser`)
+## @param smtpFromName SMTP from name  (default is `wordpressFirstName` and `wordpressLastName`)
 ##
 smtpHost: ""
 smtpPort: ""
 smtpUser: ""
 smtpPassword: ""
 smtpProtocol: ""
+smtpFromEmail: ""
+smtpFromName: ""
 ## @param smtpExistingSecret The name of an existing secret with SMTP credentials
 ## NOTE: Must contain key `smtp-password`
 ## NOTE: When it's set, the `smtpPassword` parameter is ignored
@@ -262,9 +260,9 @@ extraEnvVarsSecret: ""
 ## @param multisite.enableNipIoRedirect Whether to enable IP address redirection to nip.io wildcard DNS. Useful when running on an IP address with subdomain network type.
 ##
 multisite:
-  enable: false
-  host: emmynaturals.bametta.com
-  networkType: subdomain
+  enable: true
+  host: ""
+  networkType: emmynaturals.bametta.com
   enableNipIoRedirect: false
 ## @section WordPress deployment parameters
 ##
@@ -618,7 +616,7 @@ ingress:
   enabled: true
   ## @param ingress.pathType Ingress path type
   ##
-  pathType: Prefix
+  pathType: ImplementationSpecific
   ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
   ##
   apiVersion: ""
@@ -646,7 +644,7 @@ ingress:
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations: {
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"  
+    cert-manager.io/cluster-issuer: letsencrypt-staging
   }
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
@@ -897,7 +895,7 @@ volumePermissions:
   image:
     registry: docker.io
     repository: bitnami/os-shell
-    tag: 12-debian-12-r25
+    tag: 12-debian-12-r32
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
@@ -1000,7 +998,7 @@ metrics:
   image:
     registry: docker.io
     repository: bitnami/apache-exporter
-    tag: 1.0.8-debian-12-r3
+    tag: 1.0.9-debian-12-r2
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
@@ -1243,9 +1241,9 @@ mariadb:
   ##
   auth:
     rootPassword: ""
-    database: bitnami_wordpress
-    username: bn_wordpress
-    password: ""
+    database: bametta
+    username: bametta
+    password: bematta
   ## MariaDB Primary configuration
   ##
   primary:
@@ -1295,13 +1293,13 @@ externalDatabase:
   port: 3306
   ## @param externalDatabase.user External Database username
   ##
-  user: bn_wordpress
+  user: bametta
   ## @param externalDatabase.password External Database user password
   ##
-  password: ""
+  password: bametta
   ## @param externalDatabase.database External Database database name
   ##
-  database: bitnami_wordpress
+  database: bematta
   ## @param externalDatabase.existingSecret The name of an existing secret with database credentials. Evaluated as a template
   ## NOTE: Must contain key `mariadb-password`
   ## NOTE: When it's set, the `externalDatabase.password` parameter is ignored
@@ -1364,4 +1362,3 @@ externalCache:
   ## @param externalCache.port External cache server port
   ##
   port: 11211
-
