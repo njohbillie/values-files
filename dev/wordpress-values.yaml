@@ -109,7 +109,7 @@ image:
 
 ## @param wordpressUsername WordPress username
 ##
-wordpressUsername: bametta-admin
+wordpressUsername: bametta
 ## @param wordpressPassword WordPress user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
@@ -678,7 +678,7 @@ ingress:
   ##     serviceName: ssl-redirect
   ##     servicePort: use-annotation
   ##
-  extraPaths: /wp-admin
+  extraPaths: []
   ## @param ingress.extraTls TLS configuration for additional hostname(s) to be covered with this ingress record
   ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
   ## e.g:
