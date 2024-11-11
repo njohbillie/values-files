@@ -158,9 +158,13 @@ eck-logstash:
     cpu: "1000m"
     memory: "1536Mi"
 
+  persistence:
+    enabled: true
+    storageClassName: "gp2"
+    annotations: {}
+
   volumeClaimTemplate:
     accessModes: ["ReadWriteOnce"]
-    storageClassName: "gp2"
     resources:
     requests:
       storage: 1Gi
