@@ -9,15 +9,6 @@ eck-elasticsearch:
   # This is adjusting the full name of the elasticsearch resource so that both the eck-elasticsearch
   # and the eck-kibana chart work together by default in the eck-stack chart.
   fullnameOverride: elasticsearch
-  volumeClaimTemplate:
-  - metadata:
-      name: elasticsearch
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: "gp2"
-      resources:
-        requests:
-          storage: 1Gi
 
 # If enabled, will use the eck-kibana chart and deploy a Kibana resource.
 #
@@ -43,12 +34,12 @@ eck-fleet-server:
 # If enabled, will use the eck-beats chart and deploy a Beats resource.
 #
 eck-beats:
-  enabled: false
+  enabled: true
 
 # If enabled, will use the eck-logstash chart and deploy a Logstash resource.
 #
 eck-logstash:
-  enabled: false
+  enabled: true
 
 # If enabled, will use the eck-apm-server chart and deploy a standalone APM Server resource.
 #
