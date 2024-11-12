@@ -31,6 +31,16 @@ eck-elasticsearch:
             requests:
               memory: 2Gi
 
+  volumeClaimTemplate:
+  - metadata:
+      name: elasticsearch
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: "gp2"
+      resources:
+        requests:
+          storage: 5Gi
+
 eck-kibana:
   enabled: true
   spec:
@@ -168,13 +178,12 @@ eck-logstash:
     cpu: "1000m"
     memory: "1536Mi"
 
-  persistence:
-    enabled: true
-    storageClassName: "gp2"
-    annotations: {}
-
   volumeClaimTemplate:
-    accessModes: ["ReadWriteOnce"]
-    resources:
-    requests:
-      storage: 1Gi
+  - metadata:
+      name: logstash
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: "gp2"
+      resources:
+        requests:
+          storage: 1Gi
