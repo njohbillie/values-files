@@ -1243,7 +1243,7 @@ mariadb:
     rootPassword: ""
     database: emmynaturals
     username: emmynaturals
-    password: ""
+    password: Audrey062021?
   ## MariaDB Primary configuration
   ##
   primary:
