@@ -112,7 +112,7 @@ wordpressUsername: bametta
 ## @param wordpressPassword WordPress user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-wordpressPassword: ""
+wordpressPassword: Rusticgadfly059?
 ## @param existingSecret Name of existing secret containing WordPress credentials
 ## NOTE: Must contain key `wordpress-password`
 ## NOTE: When it's set, the `wordpressPassword` parameter is ignored
@@ -214,7 +214,7 @@ smtpFromName: ""
 smtpExistingSecret: ""
 ## @param allowEmptyPassword Allow the container to be started with blank passwords
 ##
-allowEmptyPassword: true
+allowEmptyPassword: false
 ## @param allowOverrideNone Configure Apache to prohibit overriding directives with htaccess files
 ##
 allowOverrideNone: false
@@ -1243,7 +1243,7 @@ mariadb:
     rootPassword: ""
     database: bametta
     username: bametta
-    password: ""
+    password: Rusticgadfly059?
   ## MariaDB Primary configuration
   ##
   primary:
