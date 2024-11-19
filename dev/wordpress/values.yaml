@@ -19,7 +19,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  defaultStorageClass: gp2
+  defaultStorageClass: efs-sc
   storageClass: ""
   ## Compatibility adaptations for Kubernetes platforms
   ##
