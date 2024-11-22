@@ -260,8 +260,8 @@ extraEnvVarsSecret: ""
 ## @param multisite.enableNipIoRedirect Whether to enable IP address redirection to nip.io wildcard DNS. Useful when running on an IP address with subdomain network type.
 ##
 multisite:
-  enable: false
-  host: ""
+  enable: true
+  host: glam.emmynaturals.com
   networkType: subdomain
   enableNipIoRedirect: false
 ## @section WordPress deployment parameters
@@ -270,7 +270,7 @@ multisite:
 ## @param replicaCount Number of WordPress replicas to deploy
 ## NOTE: ReadWriteMany PVC(s) are required if replicaCount > 1
 ##
-replicaCount: 1
+replicaCount: 2
 ## @param updateStrategy.type WordPress deployment strategy type
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 ## NOTE: Set it to `Recreate` if you use a PV that cannot be mounted on multiple pods
@@ -728,7 +728,7 @@ ingress:
 secondaryIngress:
   ## @param secondaryIngress.enabled Enable ingress record generation for WordPress
   ##
-  enabled: true
+  enabled: false
   ## @param secondaryIngress.pathType Ingress path type
   ##
   pathType: ImplementationSpecific
