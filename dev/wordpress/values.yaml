@@ -260,7 +260,7 @@ extraEnvVarsSecret: ""
 ## @param multisite.enableNipIoRedirect Whether to enable IP address redirection to nip.io wildcard DNS. Useful when running on an IP address with subdomain network type.
 ##
 multisite:
-  enable: true
+  enable: false
   host: glam.emmynaturals.com
   networkType: subdomain
   enableNipIoRedirect: false
