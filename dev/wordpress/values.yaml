@@ -216,7 +216,7 @@ smtpExistingSecret: ""
 allowEmptyPassword: false
 ## @param allowOverrideNone Configure Apache to prohibit overriding directives with htaccess files
 ##
-allowOverrideNone: true
+allowOverrideNone: fals
 ## @param overrideDatabaseSettings Allow overriding the database settings persisted in wp-config.php
 ##
 overrideDatabaseSettings: false
