@@ -140,7 +140,7 @@ wordpressScheme: http
 ## NOTE: useful if you use an external database that already contains WordPress data
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/wordpress#connect-wordpress-docker-container-to-an-existing-database
 ##
-wordpressSkipInstall: false
+wordpressSkipInstall: true
 ## @param wordpressExtraConfigContent Add extra content to the default wp-config.php file
 ## e.g:
 wordpressExtraConfigContent: |
@@ -148,13 +148,20 @@ wordpressExtraConfigContent: |
   @ini_set( 'memory_limit', '256M' );
   @ini_set( 'upload_max_size', '256M' );
   @ini_set( 'max_execution_time', '300' );
+  @ini_set( 'max_input_vars', '2004' );
+
 ##
 #wordpressExtraConfigContent: ""
 ## @param wordpressConfiguration The content for your custom wp-config.php file (advanced feature)
 ## NOTE: This will override configuring WordPress based on environment variables (including those set by the chart)
 ## NOTE: Currently only supported when `wordpressSkipInstall=true`
 ##
-wordpressConfiguration: ""
+wordpressConfiguration: |
+  @ini_set( 'post_max_size', '256M');
+  @ini_set( 'memory_limit', '256M' );
+  @ini_set( 'upload_max_size', '256M' );
+  @ini_set( 'max_execution_time', '300' );
+  @ini_set( 'max_input_vars', '2004' );
 ## @param existingWordPressConfigurationSecret The name of an existing secret with your custom wp-config.php file (advanced feature)
 ## NOTE: When it's set the `wordpressConfiguration` parameter is ignored
 ##
