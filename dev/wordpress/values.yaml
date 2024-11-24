@@ -140,15 +140,10 @@ wordpressScheme: http
 ## NOTE: useful if you use an external database that already contains WordPress data
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/wordpress#connect-wordpress-docker-container-to-an-existing-database
 ##
-wordpressSkipInstall: true
+wordpressSkipInstall: false
 ## @param wordpressExtraConfigContent Add extra content to the default wp-config.php file
 ## e.g:
-wordpressExtraConfigContent: |
-  @ini_set( 'post_max_size', '256M');
-  @ini_set( 'memory_limit', '256M' );
-  @ini_set( 'upload_max_size', '256M' );
-  @ini_set( 'max_execution_time', '300' );
-  @ini_set( 'max_input_vars', '2004' );
+wordpressExtraConfigContent: ""
 
 ##
 #wordpressExtraConfigContent: ""
@@ -156,12 +151,7 @@ wordpressExtraConfigContent: |
 ## NOTE: This will override configuring WordPress based on environment variables (including those set by the chart)
 ## NOTE: Currently only supported when `wordpressSkipInstall=true`
 ##
-wordpressConfiguration: |
-  @ini_set( 'post_max_size', '256M');
-  @ini_set( 'memory_limit', '256M' );
-  @ini_set( 'upload_max_size', '256M' );
-  @ini_set( 'max_execution_time', '300' );
-  @ini_set( 'max_input_vars', '2004' );
+wordpressConfiguration: ""
 ## @param existingWordPressConfigurationSecret The name of an existing secret with your custom wp-config.php file (advanced feature)
 ## NOTE: When it's set the `wordpressConfiguration` parameter is ignored
 ##
@@ -223,10 +213,10 @@ smtpFromName: ""
 smtpExistingSecret: ""
 ## @param allowEmptyPassword Allow the container to be started with blank passwords
 ##
-allowEmptyPassword: true
+allowEmptyPassword: false
 ## @param allowOverrideNone Configure Apache to prohibit overriding directives with htaccess files
 ##
-allowOverrideNone: false
+allowOverrideNone: true
 ## @param overrideDatabaseSettings Allow overriding the database settings persisted in wp-config.php
 ##
 overrideDatabaseSettings: false
@@ -239,7 +229,7 @@ htaccessPersistenceEnabled: false
 ## NOTE: Must contain key `wordpress-htaccess.conf` with the file content
 ## NOTE: Requires setting `allowOverrideNone=false`
 ##
-customHTAccessCM: ""
+customHTAccessCM: prod-wordpress-cm
 ## @param command Override default container command (useful when using custom images)
 ##
 command: []
