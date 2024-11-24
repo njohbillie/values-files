@@ -216,10 +216,10 @@ smtpExistingSecret: ""
 allowEmptyPassword: false
 ## @param allowOverrideNone Configure Apache to prohibit overriding directives with htaccess files
 ##
-allowOverrideNone: true
+allowOverrideNone: false
 ## @param overrideDatabaseSettings Allow overriding the database settings persisted in wp-config.php
 ##
-overrideDatabaseSettings: fals
+overrideDatabaseSettings: false
 ## @param htaccessPersistenceEnabled Persist custom changes on htaccess files
 ## If `allowOverrideNone` is `false`, it will persist `/opt/bitnami/wordpress/wordpress-htaccess.conf`
 ## If `allowOverrideNone` is `true`, it will persist `/opt/bitnami/wordpress/.htaccess`
@@ -760,7 +760,7 @@ secondaryIngress:
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations: {
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-staging
   }
   ## @param secondaryIngress.tls Enable TLS configuration for the host defined at `secondaryIngress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.secondaryIngress.hostname }}`
