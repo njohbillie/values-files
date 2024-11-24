@@ -219,7 +219,7 @@ allowEmptyPassword: false
 allowOverrideNone: true
 ## @param overrideDatabaseSettings Allow overriding the database settings persisted in wp-config.php
 ##
-overrideDatabaseSettings: false
+overrideDatabaseSettings: fals
 ## @param htaccessPersistenceEnabled Persist custom changes on htaccess files
 ## If `allowOverrideNone` is `false`, it will persist `/opt/bitnami/wordpress/wordpress-htaccess.conf`
 ## If `allowOverrideNone` is `true`, it will persist `/opt/bitnami/wordpress/.htaccess`
