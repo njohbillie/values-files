@@ -1243,26 +1243,26 @@ mariadb:
   ##      https://github.com/bitnami/containers/blob/main/bitnami/mariadb/README.md#creating-a-database-user-on-first-run
   ##
   # MariaDB Authentication parameters
-  auth:
-    rootPassword: 
-      existingSecret: mariadb-secrets
-      root: root-password
-    database: 
-      existingSecret: mariadb-secrets
-      name: db-name
-    username: 
-      existingSecret: mariadb-secrets
-      username: db-username
-    password: 
-      existingSecret: mariadb-secrets
-      password: db-password
-
   # auth:
-  #   rootPassword: ""
-  #   database: bametta
-  #   username: bametta
-  #   password: Rusticgadfly059?
-  ## MariaDB Primary configuration
+  #   rootPassword: 
+  #     existingSecret: mariadb-secrets
+  #     root: root-password
+  #   database: 
+  #     existingSecret: mariadb-secrets
+  #     name: db-name
+  #   username: 
+  #     existingSecret: mariadb-secrets
+  #     username: db-username
+  #   password: 
+  #     existingSecret: mariadb-secrets
+  #     password: db-password
+
+  auth:
+    rootPassword: ""
+    database: bametta
+    username: bametta
+    password: Rusticgadfly059?
+  # MariaDB Primary configuration
   ##
   primary:
     ## MariaDB Primary Persistence parameters
