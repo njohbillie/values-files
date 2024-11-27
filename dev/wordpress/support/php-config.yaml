@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: prod-wordpress-cm
+  name: prod-wordpress-cm-1
   namespace: wordpress
 data:
   wordpress-htaccess.conf: |
