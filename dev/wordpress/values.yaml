@@ -1232,7 +1232,7 @@ mariadb:
   enabled: true
   ## @param mariadb.architecture MariaDB architecture. Allowed values: `standalone` or `replication`
   ##
-  architecture: standalone
+  architecture: replication
   ## MariaDB Authentication parameters
   ## @param mariadb.auth.rootPassword MariaDB root password
   ## @param mariadb.auth.database MariaDB custom database
