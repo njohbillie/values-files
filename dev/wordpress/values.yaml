@@ -1266,10 +1266,10 @@ mariadb:
   ##
   primary:
 
-    configuration: |
-      [mysqld]
-      max_allowed_packet=16M
-      innodb_log_file_size=128M
+    # configuration: |
+    #   [mysqld]
+    #   max_allowed_packet=16M
+    #   innodb_log_file_size=128M
     ## MariaDB Primary Persistence parameters
     ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
     ## @param mariadb.primary.persistence.enabled Enable persistence on MariaDB using PVC(s)
