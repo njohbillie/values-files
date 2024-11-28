@@ -644,8 +644,8 @@ ingress:
   ##
   annotations: {
     cert-manager.io/cluster-issuer: letsencrypt-prod,
-    nginx.ingress.kubernetes.io/client-max-body-size: "40m",
-    nginx.ingress.kubernetes.io/proxy-body-size: "40m"
+    nginx.ingress.kubernetes.io/client-max-body-size: "100m",
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
   }
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
@@ -1265,6 +1265,11 @@ mariadb:
   # MariaDB Primary configuration
   ##
   primary:
+
+    configuration: |
+      [mysqld]
+      max_allowed_packet=16M
+      innodb_log_file_size=128M
     ## MariaDB Primary Persistence parameters
     ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
     ## @param mariadb.primary.persistence.enabled Enable persistence on MariaDB using PVC(s)
