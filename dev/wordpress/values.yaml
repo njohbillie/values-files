@@ -143,7 +143,8 @@ wordpressScheme: http
 wordpressSkipInstall: false
 ## @param wordpressExtraConfigContent Add extra content to the default wp-config.php file
 ## e.g:
-wordpressExtraConfigContent: "define( 'WP_MEMORY_LIMIT', '256M' );"
+wordpressExtraConfigContent: |
+  define( 'WP_MEMORY_LIMIT', '256M' );
 
 #wordpressExtraConfigContent: ""
 ## @param wordpressConfiguration The content for your custom wp-config.php file (advanced feature)
