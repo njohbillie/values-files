@@ -568,7 +568,7 @@ db:
   ## e.g:
   ## host: foo
   ##
-  host: http://bametta-website-mariadb-headless.wordpress.svc.cluster.local
+  host: bametta-website-mariadb-headless.wordpress.svc.cluster.local
   ## @param db.bundleTestDB Deploy a MariaDB instance for testing purposes
   ##
   bundleTestDB: false
