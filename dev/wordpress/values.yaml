@@ -190,7 +190,7 @@ existingApacheConfigurationConfigMap: ""
 customPostInitScripts:
   wp_memory_limit.sh: |
     #!/bin/bash
-    sed -i "/.*That's all, stop editing! Happy publishing.*/i define( 'WP_MEMORY_LIMIT', '512M' );" /bitnami/wordpress/wp-config.php
+    sed -i "/require_once ABSPATH . 'wp-settings.php';/i define( 'WP_MEMORY_LIMIT', '512M' );"  /bitnami/wordpress/wp-config.php
 ## SMTP mail delivery configuration
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/wordpress/#smtp-configuration
 ## @param smtpHost SMTP server host
